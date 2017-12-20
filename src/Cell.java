@@ -2,16 +2,25 @@ public class Cell {
 
     private State state;
 
-    public enum State {
-        DEAD, ALIVE
-    }
-
     Cell(State state) {
         this.state = state;
     }
 
-    public State getNextState(int neighbour) {
+    public State changeState() {
+        if (state == State.ALIVE) return state = State.DEAD;
+        else return state = State.ALIVE;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public State getNeighbour(int neighbour) {
         return neighbour > 1 && neighbour < 4 ? State.ALIVE : State.DEAD;
+    }
+
+    public enum State {
+        DEAD, ALIVE
     }
 
 }

@@ -5,46 +5,56 @@ public class LifeOfCellTest {
     @Test
     public void verifyThatCellDiesWithOneNeighbour() {
         Cell cell = new Cell(Cell.State.ALIVE);
-        Cell.State teCellState = cell.getNextState(1);
-        Assert.assertEquals(Cell.State.DEAD, teCellState);
+        Cell.State currentState = cell.getNeighbour(1);
+        Cell.State nextState = cell.changeState();
+        Assert.assertEquals(currentState, nextState);
     }
 
     @Test
     public void verifyThatCellDiesWithZeroNeighbour() {
         Cell cell = new Cell(Cell.State.ALIVE);
-        Cell.State teCellState = cell.getNextState(0);
-        Assert.assertEquals(Cell.State.DEAD, teCellState);
+        Cell.State currentState = cell.getNeighbour(0);
+        Cell.State nextState = cell.changeState();
+        Assert.assertEquals(nextState, currentState);
     }
 
     @Test
-    public void verifyThatCellLivesWithTwoNeighbours() {
+    public void verifyThatCellStaysAliveWithTwoNeighbours() {
         Cell cell = new Cell(Cell.State.ALIVE);
-        Cell.State teCellState = cell.getNextState(2);
-        Assert.assertEquals(Cell.State.ALIVE, teCellState);
+        Cell.State currentState = cell.getNeighbour(2);
+        Cell.State nextState = cell.changeState();
+        Assert.assertNotEquals(nextState, currentState);
     }
 
     @Test
-    public void verifyThatCellLivesWithThreeNeighbours() {
+    public void verifyThatCellStaysAliveWithThreeNeighbours() {
         Cell cell = new Cell(Cell.State.ALIVE);
-        Cell.State teCellState = cell.getNextState(3);
-        Assert.assertEquals(Cell.State.ALIVE, teCellState);
+        Cell.State currentState = cell.getNeighbour(3);
+        Cell.State nextState = cell.changeState();
+        Assert.assertNotEquals(nextState, currentState);
     }
+
     @Test
-    public void verifyThatCellLivesWithFourNeighbours() {
+    public void verifyThatCellStaysAliveWithFourNeighbours() {
         Cell cell = new Cell(Cell.State.ALIVE);
-        Cell.State teCellState = cell.getNextState(4);
-        Assert.assertEquals(Cell.State.DEAD, teCellState);
+        Cell.State currentState = cell.getNeighbour(4);
+        Cell.State nextState = cell.changeState();
+        Assert.assertEquals(nextState, currentState);
     }
+
     @Test
-    public void verifyThatCellLivesWithFiveNeighbours() {
+    public void verifyThatCellStaysAliveWithFiveNeighbours() {
         Cell cell = new Cell(Cell.State.ALIVE);
-        Cell.State teCellState = cell.getNextState(5);
-        Assert.assertEquals(Cell.State.DEAD, teCellState);
+        Cell.State currentState = cell.getNeighbour(5);
+        Cell.State nextState = cell.changeState();
+        Assert.assertEquals(nextState, currentState);
     }
+
     @Test
-    public void verifyThatCellBecomesALiveWithThreeNeighbours() {
+    public void verifyThatDeadCellBecomesAliveWithThreeNeighbours() {
         Cell cell = new Cell(Cell.State.DEAD);
-        Cell.State teCellState = cell.getNextState(3);
-        Assert.assertEquals(Cell.State.ALIVE, teCellState);
+        Cell.State currentState = cell.getNeighbour(3);
+        Cell.State nextState = cell.changeState();
+        Assert.assertEquals(nextState, currentState);
     }
 }
